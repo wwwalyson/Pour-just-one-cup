@@ -30,7 +30,7 @@
 │   ├── Core/                      # CubeMX 生成的 HAL 初始化代码
 │   ├── Hiwonder/                  # 机械臂、舵机、外设、移植层代码
 │   └── MDK-ARM/                   # Keil 工程文件（不含编译输出）
-├── calibration_data*/             # 已保存的手眼标定结果 JSON
+├── calibration_data/              # 已保存的手眼标定结果 JSON
 ├── docs/                          # Markdown 说明文档
 └── tools/                         # 串口调试脚本
 ```
@@ -185,7 +185,7 @@ ros2 run arm_test calib_collect.py --ros-args \
 
 每次机械臂到达新姿态后，在采集节点终端按 Enter 记录一组点对；达到 `min_samples` 后自动求解并保存 `hand_eye_result.json`。
 
-已有标定结果保存在 `calibration_data*/hand_eye_result.json`，可用于比对或复现实验。
+已有标定结果保存在 `calibration_data/hand_eye_result.json`，可用于比对或复现实验。
 
 ## 倒茶/倒水任务
 
