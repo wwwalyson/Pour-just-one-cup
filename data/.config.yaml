@@ -1,0 +1,69 @@
+prompt: |
+  你是语音助手。只回答用户问题本身。
+  要求：
+  1. 使用简体中文。
+  2. 回答尽可能短，优先一句话，必要时不超过两句话。
+  3. 不加人设、不寒暄、不语气词、不表情、不修饰。
+  4. 不主动延伸话题，不反问用户。
+
+end_prompt:
+  enable: false
+
+selected_module:
+  VAD: SileroVAD
+  ASR: XunfeiStreamASR
+  LLM: AliLLM
+  TTS: EdgeTTS
+  Intent: function_call
+
+ASR:
+  XunfeiStreamASR:
+    type: xunfei_stream
+    app_id: 727c2d05
+    api_key: 05d78c2ac1c6a9d38c58b917f3568173
+    api_secret: NThjOWU1ZTU5OGNjYmE0MDIxMjRiY2Zi
+    api_url: wss://iat-api.xfyun.cn/v2/iat
+    domain: iat
+    language: zh_cn
+    accent: mandarin
+    output_dir: tmp/
+
+LLM:
+  AliLLM:
+    type: openai
+    base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
+    model_name: qwen-flash
+    api_key: sk-53c1af68553d47d49a17bc51db6ae3f0
+    temperature: 0.7
+    max_tokens: 500
+    top_p: 1
+    frequency_penalty: 0
+
+TTS:
+  EdgeTTS:
+    type: edge
+    voice: zh-CN-XiaoxiaoNeural
+    output_dir: tmp/
+
+xiaozhi:
+  audio_params:
+    format: pcm
+    sample_rate: 16000
+    channels: 1
+
+Intent:
+  function_call:
+    type: function_call
+    functions:
+      - ros2_drone_control
+      - ros2_arm_control
+
+plugins:
+  ros2_drone_control:
+    service_name: "/drone_command"
+    ros_domain_id: 0
+    timeout: 8
+  ros2_arm_control:
+    service_name: "/tea_command"
+    ros_domain_id: 0
+    timeout: 90
