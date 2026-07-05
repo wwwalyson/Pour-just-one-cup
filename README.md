@@ -1,7 +1,5 @@
 # Pour-just-one-cup 机械臂与手眼标定代码
 
-本仓库收录“Pour just one cup”项目中与 **LeArm 机械臂控制**、**ROS2 上位机**、**手眼标定** 和 **倒茶/倒水任务编排** 相关的代码。仓库已排除 `.doc/.docx` 报告文件、ROS2 构建产物、Python 虚拟环境、Keil 编译输出等非源码内容。
-
 ## 项目架构
 
 ```text
