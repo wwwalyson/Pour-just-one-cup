@@ -1,6 +1,3 @@
-
-# cup_arm
-
 语音控制机械臂自动泡茶系统。基于 [xiaozhi-server](https://github.com/xinnan-tech/xiaozhi-esp32-server) 开源项目扩展开发，部署于地平线 **RDK X5** 上位机，搭配 STM32 下位机、六自由度 LeArm 机械臂及深度相机，实现从自然语言指令到物理抓取执行的全自动茶艺闭环。
 
 ## 整体架构
