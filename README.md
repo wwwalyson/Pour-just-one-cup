@@ -9,9 +9,9 @@ This system consists of three sub-projects that together form a fully automated 
 
 | Project | Path | Role | Responsibility |
 |---------|------|------|----------------|
-| xiaozhi-server | `d:\qiansai\xiaozhi-server\` | Voice interaction and task orchestration | Voice pipeline (VAD/ASR/LLM/TTS), intent parsing, function calling |
-| my_vision | `d:\qiansai\my_vision\` | Visual perception | RGB-D object detection, 3D coordinate computation, hand-eye calibration |
-| Pour-just-one-cup-arm | `d:\qiansai\Pour-just-one-cup-arm\` | Robotic arm control | Serial communication, inverse kinematics, grasp and pour motion sequencing |
+| xiaozhi-server | `./xiaozhi-server/` | Voice interaction and task orchestration | Voice pipeline (VAD/ASR/LLM/TTS), intent parsing, function calling |
+| my_vision | `./my_vision/` | Visual perception | RGB-D object detection, 3D coordinate computation, hand-eye calibration |
+| Pour-just-one-cup-arm | `./Pour-just-one-cup-arm/` | Robotic arm control | Serial communication, inverse kinematics, grasp and pour motion sequencing |
 
 ---
 
@@ -267,7 +267,7 @@ source install/setup.bash
 
 # Start serial communication bridge (traditional coordinate mode)
 ros2 launch arm_base arm_bringup.launch.py \
-  usart_port_name:=/dev/ttyUSB0 \
+  usart_port_name:=ttyUSB0 \
   serial_baud_rate:=9600
 
 # Start IK control mode
@@ -298,30 +298,30 @@ ros2 topic pub -1 /task_cmd std_msgs/msg/String "{data: '2'}"   # teapot task
 **Terminal 1: Robotic Arm Serial Bridge**
 
 ```bash
-cd ~/arm_ws && source install/setup.bash
+cd ./arm_ws && source install/setup.bash
 ros2 launch arm_base arm_bringup.launch.py \
-  usart_port_name:=/dev/ttyUSB0 \
+  usart_port_name:=ttyUSB0 \
   serial_baud_rate:=9600
 ```
 
 **Terminal 2: Vision Detection Node**
 
 ```bash
-cd ~/vision_ws && source install/setup.bash
+cd ./vision_ws && source install/setup.bash
 python3 yolo_3d.py
 ```
 
 **Terminal 3: Tea-Making Task Node**
 
 ```bash
-cd ~/arm_ws && source install/setup.bash
+cd ./arm_ws && source install/setup.bash
 ros2 run arm_task tea_task_node
 ```
 
 **Terminal 4: Voice Service**
 
 ```bash
-cd ~/cup_arm
+cd ./cup_arm
 python app.py
 ```
 

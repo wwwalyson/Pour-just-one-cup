@@ -8,9 +8,9 @@
 
 | 项目 | 路径 | 角色 | 职责 |
 |------|------|------|------|
-| xiaozhi-server | `d:\qiansai\xiaozhi-server\` | 语音交互与任务调度 | 语音对话管线（VAD/ASR/LLM/TTS）、意图解析、Function Calling |
-| my_vision | `d:\qiansai\my_vision\` | 视觉定位 | RGB-D 目标检测、3D 坐标解算、手眼标定 |
-| Pour-just-one-cup-arm | `d:\qiansai\Pour-just-one-cup-arm\` | 机械臂控制 | 串口通信、逆运动学、抓取与倾倒动作编排 |
+| xiaozhi-server | `xiaozhi-server\` | 语音交互与任务调度 | 语音对话管线（VAD/ASR/LLM/TTS）、意图解析、Function Calling |
+| my_vision | `my_vision\` | 视觉定位 | RGB-D 目标检测、3D 坐标解算、手眼标定 |
+| Pour-just-one-cup-arm | `Pour-just-one-cup-arm\` | 机械臂控制 | 串口通信、逆运动学、抓取与倾倒动作编排 |
 
 ---
 
@@ -266,7 +266,7 @@ source install/setup.bash
 
 # 启动串口通信桥（传统坐标模式）
 ros2 launch arm_base arm_bringup.launch.py \
-  usart_port_name:=/dev/ttyUSB0 \
+  usart_port_name:=ttyUSB0 \
   serial_baud_rate:=9600
 
 # 启动 IK 控制模式
@@ -297,30 +297,30 @@ ros2 topic pub -1 /task_cmd std_msgs/msg/String "{data: '2'}"   # 茶壶任务
 **终端 1：机械臂串口桥**
 
 ```bash
-cd ~/arm_ws && source install/setup.bash
+cd ./arm_ws && source install/setup.bash
 ros2 launch arm_base arm_bringup.launch.py \
-  usart_port_name:=/dev/ttyUSB0 \
+  usart_port_name:=ttyUSB0 \
   serial_baud_rate:=9600
 ```
 
 **终端 2：视觉检测节点**
 
 ```bash
-cd ~/vision_ws && source install/setup.bash
+cd ./vision_ws && source install/setup.bash
 python3 yolo_3d.py
 ```
 
 **终端 3：泡茶任务节点**
 
 ```bash
-cd ~/arm_ws && source install/setup.bash
+cd ./arm_ws && source install/setup.bash
 ros2 run arm_task tea_task_node
 ```
 
 **终端 4：语音服务**
 
 ```bash
-cd ~/cup_arm
+cd ./cup_arm
 python app.py
 ```
 
