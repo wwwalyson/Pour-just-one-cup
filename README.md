@@ -1,4 +1,4 @@
-[README.md](https://github.com/user-attachments/files/29683715/README.md) | [README_cn.md](https://github.com/user-attachments/files/29683715/README.md)
+## Chiese [README_cn.md](./README_cn.md)
 # Voice-Controlled Robotic Arm Tea-Making System
 
 This system consists of three sub-projects that together form a fully automated closed loop: from natural language voice commands to physical robotic arm execution. The user speaks a command; the system performs speech recognition and LLM intent parsing, invokes the vision module for 3D object localization, and finally controls the robotic arm to execute grasping and pouring actions.
