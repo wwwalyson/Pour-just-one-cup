@@ -56,7 +56,7 @@ This system consists of three sub-projects that together form a fully automated 
 
 ## Data Flow
 
-```
+```mermaind
 User Voice
   |
   v
@@ -144,7 +144,7 @@ A ROS2 Python node deployed on the RDK X5, performing real-time 3D object detect
 
 ### Algorithm Pipeline
 
-```
+```mermaid
 RGB-D Image -> Letterbox 640x640 -> NV12 Conversion -> BPU YOLOv8 Inference
     -> DFL Bounding Box Decoding -> NMS Suppression
     -> ROI Depth Extraction (29x29 px region, 20th percentile)
